@@ -1,6 +1,16 @@
-import plotly.express as px
-import pandas as pd
+import numpy as np
+import csv
 
-df = pd.read_csv("coffee.csv")
-figure = px.scatter(df,x="Coffee in ml",y="sleep in hours")
-figure.show()
+def find_correlation():
+    coffeeinml = []
+    sleep = []
+    with open("coffee.csv") as f:
+        data = csv.DictReader(f)
+        for row in data:
+            coffeeinml.append(float(row["Coffee in ml"]))
+            sleep.append(float(row("sleep in hours")))
+        datasource = {"x":sleep,"y":coffeeinml}
+        correlation = np.corrcoef(datasource["x"],datasource["y"])
+        print(correlation[0,1])
+
+find_correlation()
